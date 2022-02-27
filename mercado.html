@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crypto Table</title>
+        <link rel="stylesheet" href="style.css" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+</head>
+
+
+<body>
+        <header class="navbar" style="position: absolute; width: 100%; background-color:black">
+                <div class="container-fluid">
+                        <div class="row">
+                                <a class="navbar-brand" href="https://fourceex.io/">
+                                        <img src="./img/logo-fource-sem-fundo.png" alt="" width="50%">
+                                </a>
+                        </div>
+                </div>
+        </header>
+
+
+
+        <section class="home">
+
+                <div class="container-fluid">
+                        <div class="row">
+                                <div class="col-12">
+                                        <div class="searchBar">
+                                                <input class="form-control" id="myInput" type="text"
+                                                        placeholder="Pesquisar">
+                                        </div>
+                                        <div class="header_fixed">
+                                                <div class="table-responsive">
+                                                        <table>
+                                                                <thead>
+                                                                        <tr>
+                                                                                <th></th>
+                                                                                <th>Nome</th>
+                                                                                <th>Sigla</th>
+                                                                                <th>Capitalização</th>
+                                                                                <th>Preço</th>
+                                                                                <th>Variação 24h</th>
+                                                                                <th>Gráfico</th>
+                                                                                <th>Negociação</th>
+                                                                        </tr>
+                                                                </thead>
+                                                                <tbody id="myTable">
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bitcoin/"><img
+                                                                                                        src=./img/bitcoin.png>
+                                                                                        </a></td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bitcoin/">Bitcoin</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bitcoin/">
+                                                                                                BTC</a>
+                                                                                </td>
+                                                                                <td> <span id="btcCota"> </span>
+
+                                                                                </td>
+                                                                                <td> <span id="btcPrice"> </span></td>
+
+                                                                                <td> <span id="btcVar"> </span>% </td>
+                                                                                <!-- sempre o gráfico nesse padrão para manter o tamanho e responsividade --->
+                                                                                <td style="width: 300px; height:90px">
+                                                                                        <canvas id="btcGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ethereum/"><img
+                                                                                                        src=./img/ethereum.png></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ethereum/">Ethereum</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ethereum/">ETH</a>
+                                                                                </td>
+                                                                                <td> <span id="ethCota"></span></td>
+                                                                                <td> <span id="ethPrice"></span></td>
+
+                                                                                <td> <span id="ethVar"></span>
+                                                                                        %
+                                                                                </td>
+                                                                                <td style="width: 300px; height:90px">
+                                                                                        <canvas id="ethGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/solana/"><img
+                                                                                                        src=./img/sol.png /></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/solana/">Solana</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/solana/">SOL</a>
+                                                                                </td>
+                                                                                <td> <span id="solCota"></span> </td>
+                                                                                <td> <span id="solPrice"></span></td>
+
+                                                                                <td><span id="solVar"></span> %</td>
+                                                                                <td name="solGraph"
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="solGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/litecoin/"><img
+                                                                                                        src=./img/litecoin.png></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/litecoin/">Litecoin</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/litecoin/">LTC</a>
+                                                                                </td>
+                                                                                <td> <span id="ltcCota"></span> </td>
+                                                                                <td> <span id="ltcPrice"></span></td>
+
+                                                                                <td><span id="ltcVar"></span> %</td>
+                                                                                <td name="ltcGraph"
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="ltcGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/cardano/"><img
+                                                                                                        src=./img/ada.png></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/cardano/">Cardano</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/cardano/">ADA</a>
+                                                                                </td>
+                                                                                <td> <span id="adaCota"></span></td>
+                                                                                <td> <span id="adaPrice"></span></td>
+
+                                                                                <td><span id="adaVar"></span> %</td>
+                                                                                <td name="adaGraph"
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="adaGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ripple/"><img
+                                                                                                        src=./img/xrp.png></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ripple/">Ripple</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/ripple/">XRP</a>
+                                                                                </td>
+                                                                                <td> <span id="xrpCota"></span></td>
+                                                                                <td> <span id="xrpPrice"></span></td>
+
+                                                                                <td><span id="xrpVar"></span> %</td>
+                                                                                <td name="xrpGraph"
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="xrpGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dash/"><img
+                                                                                                        src=./img/dash.png></a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dash/">Dash</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dash/">DASH</a>
+                                                                                </td>
+                                                                                <td> <span id="dashCota"></span></td>
+                                                                                <td> <span id="dashPrice"></span></td>
+
+                                                                                <td><span id="dashVar"></span> %</td>
+                                                                                <td name="dashGraph"
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="dashGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/shiba-inu/"><img
+                                                                                                        src=./img/shib.png>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/shiba-inu/">Shiba
+                                                                                                Inu</a></td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/shiba-inu/">SHIB</a>
+                                                                                </td>
+                                                                                <td> <span id="shibCota"></span></td>
+                                                                                <td> <span id="shibPrice"></span></td>
+
+                                                                                <td><span id="shibVar"></span> %</td>
+                                                                                <td name=""
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="shibGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dogecoin/"><img
+                                                                                                        src=./img/doge.png>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dogecoin/">Dogecoin</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/dogecoin/">DOGE</a>
+                                                                                </td>
+                                                                                <td> <span id="dogeCota"></span></td>
+                                                                                <td> <span id="dogePrice"></span></td>
+
+                                                                                <td><span id="dogeVar"></span> %</td>
+                                                                                <td name=""
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="dogeGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <tr>
+
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bnb/"><img
+                                                                                                        src=./img/bnb.png>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bnb/">Binance
+                                                                                                Coin</a>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                href="https://coinmarketcap.com/currencies/bnb/">BNB</a>
+                                                                                </td>
+                                                                                <td> <span id="bnbCota"></span></td>
+                                                                                <td> <span id="bnbPrice"></span></td>
+
+                                                                                <td><span id="bnbVar"></span> %</td>
+                                                                                <td name=""
+                                                                                        style="width: 300px; height:90px">
+                                                                                        <canvas id="bnbGraph"
+                                                                                                style="width:100%; height:100%"></canvas>
+                                                                                </td>
+                                                                                <td><a target="_blank"
+                                                                                                class="btn btn-primary"
+                                                                                                href="https://app.fourceex.io/"
+                                                                                                role="button">Compra/Venda</a>
+                                                                                </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/luna/"><img
+                                                                                                src=./img/luna.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/luna/">Terra</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/luna/">LUNA</a>
+                                                                        </td>
+                                                                        <td> <span id="lunaCota"></span></td>
+                                                                        <td> <span id="lunaPrice"></span></td>
+
+                                                                        <td><span id="lunaVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="lunaGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/avalanche/"><img
+                                                                                                src=./img/avax.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/avalanche/">Avalanche</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/avalanche/">AVAX</a>
+                                                                        </td>
+                                                                        <td> <span id="avaxCota"></span></td>
+                                                                        <td> <span id="avaxPrice"></span></td>
+
+                                                                        <td><span id="avaxVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="avaxGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polkadot/"><img
+                                                                                                src=./img/dot.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polkadot/">Polkadot</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polkadot/">DOT</a>
+                                                                        </td>
+                                                                        <td> <span id="dotCota"></span></td>
+                                                                        <td> <span id="dotPrice"></span></td>
+
+                                                                        <td><span id="dotVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="dotGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polygon/"><img
+                                                                                                src=./img/matic.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polygon/">Polygon</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/polygon/">MATIC</a>
+                                                                        </td>
+                                                                        <td> <span id="maticCota"></span></td>
+                                                                        <td> <span id="maticPrice"></span></td>
+
+                                                                        <td><span id="maticVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="maticGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/cosmos/"><img
+                                                                                                src=./img/atom.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/cosmos/">Cosmos</a>
+                                                                        </td>
+                                                                        <td>ATOM</td>
+                                                                        <td> <span id="atomCota"></span></td>
+                                                                        <td> <span id="atomPrice"></span></td>
+
+                                                                        <td><span id="atomVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="atomGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/"><img
+                                                                                                src=./img/link.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/">ChainLink</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/">LINK</a>
+                                                                        </td>
+                                                                        <td> <span id="linkCota"></span></td>
+                                                                        <td> <span id="linkPrice"></span></td>
+
+                                                                        <td><span id="linkVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="linkGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/"><img
+                                                                                                src=./img/uni.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/">Uniswap</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chainlink/">UNI</a>
+                                                                        </td>
+                                                                        <td> <span id="uniCota"></span></td>
+                                                                        <td> <span id="uniPrice"></span></td>
+
+                                                                        <td><span id="uniVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="uniGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://coinmarketcap.com/currencies/uniswap/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/tron/"><img
+                                                                                                src=./img/trx.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/tron/">TRON</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://app.fourceex.io/">TRX</a>
+                                                                        </td>
+                                                                        <td> <span id="trxCota"></span></td>
+                                                                        <td> <span id="trxPrice"></span></td>
+
+                                                                        <td><span id="trxVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="trxGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/decentraland/"><img
+                                                                                                src=./img/mana.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/decentraland/">Decentraland</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/decentraland/">MANA</a>
+                                                                        </td>
+                                                                        <td> <span id="manaCota"></span></td>
+                                                                        <td> <span id="manaPrice"></span></td>
+
+                                                                        <td><span id="manaVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="manaGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stellar/"><img
+                                                                                                src=./img/XLM.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stellar/">Stellar
+                                                                                        Lumens</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stellar/">XLM</a>
+                                                                        </td>
+                                                                        <td> <span id="xlmCota"></span></td>
+                                                                        <td> <span id="xlmPrice"></span></td>
+
+                                                                        <td><span id="xlmVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="xlmGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/"><img
+                                                                                                src=./img/ftm.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/">Fantom</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/">FTM</a>
+                                                                        </td>
+                                                                        <td> <span id="ftmCota"></span></td>
+                                                                        <td> <span id="ftmPrice"></span></td>
+
+                                                                        <td><span id="ftmVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="ftmGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/"><img
+                                                                                                src=./img/sand.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/">The
+                                                                                        Sandbox</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fantom/">SAND</a>
+                                                                        </td>
+                                                                        <td> <span id="sandCota"></span></td>
+                                                                        <td> <span id="sandPrice"></span></td>
+
+                                                                        <td><span id="sandVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="sandGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/hedera-hashgraph/"><img
+                                                                                                src=./img/hbar.png></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/hedera-hashgraph/">Hedera
+                                                                                        Hashgraph</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/hedera-hashgraph/">HBAR</a>
+                                                                        </td>
+                                                                        <td> <span id="hbarCota"></span></td>
+                                                                        <td> <span id="hbarPrice"></span></td>
+
+                                                                        <td><span id="hbarVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="hbarGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/flow/"><img
+                                                                                                src=./img/flow.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/flow/">Flow</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/flow/">FLOW</a>
+                                                                        </td>
+                                                                        <td> <span id="flowCota"></span></td>
+                                                                        <td> <span id="flowPrice"></span></td>
+
+                                                                        <td><span id="flowVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="flowGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/vechain/"><img
+                                                                                                src=./img/vet.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/vechain/">VeChain</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/vechain/">VET</a>
+                                                                        </td>
+                                                                        <td> <span id="vetCota"></span></td>
+                                                                        <td> <span id="vetPrice"></span></td>
+
+                                                                        <td><span id="vetVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="vetGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/axie-infinity/"><img
+                                                                                                src=./img/axs.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/axie-infinity/">Axie
+                                                                                        Infinity</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/axie-infinity/">AXS</a>
+                                                                        </td>
+                                                                        <td> <span id="axsCota"></span></td>
+                                                                        <td> <span id="axsPrice"></span></td>
+
+                                                                        <td><span id="axsVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="axsGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/tezos/"><img
+                                                                                                src=./img/xtz.png></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/tezos/">Tezos</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/tezos/">XTZ</a>
+                                                                        </td>
+                                                                        <td> <span id="xtzCota"></span></td>
+                                                                        <td> <span id="xtzPrice"></span></td>
+
+                                                                        <td><span id="xtzVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="xtzGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/helium/"><img
+                                                                                                src=./img/hnt.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/helium/">Helium</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/helium/">HNT</a>
+                                                                        </td>
+                                                                        <td> <span id="hntCota"></span></td>
+                                                                        <td> <span id="hntPrice"></span></td>
+
+                                                                        <td><span id="hntVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="hntGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/internet-computer/"><img
+                                                                                                src=./img/icp.png></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/internet-computer/">Internet
+                                                                                        Computer</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/internet-computer/">ICP</a>
+                                                                        </td>
+                                                                        <td> <span id="icpCota"></span></td>
+                                                                        <td> <span id="icpPrice"></span></td>
+
+                                                                        <td><span id="icpVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="icpGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><img src=./img/Miota.svg></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/iota/">MIOTA</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/iota/">IOTA</a>
+                                                                        </td>
+                                                                        <td> <span id="iotaCota"></span></td>
+                                                                        <td> <span id="iotaPrice"></span></td>
+
+                                                                        <td><span id="iotaVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="iotaGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/harmony/"><img
+                                                                                                src=./img/one.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/harmony/">Harmony</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/harmony/">ONE</a>
+                                                                        </td>
+                                                                        <td> <span id="oneCota"></span></td>
+                                                                        <td> <span id="onePrice"></span></td>
+
+                                                                        <td><span id="oneVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="oneGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/aave/"><img
+                                                                                                src=./img/aave.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/aave/">Aave</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/aave/">AAVE</a>
+                                                                        </td>
+                                                                        <td> <span id="aaveCota"></span></td>
+                                                                        <td> <span id="aavePrice"></span></td>
+
+                                                                        <td><span id="aaveVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="aaveGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/gala/"><img
+                                                                                                src=./img/GALA.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/gala/">Gala</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/gala/">GALA</a>
+                                                                        </td>
+                                                                        <td> <span id="galaCota"></span></td>
+                                                                        <td> <span id="galaPrice"></span></td>
+                                                                        <td><span id="galaVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="galaGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/the-graph/"><img
+                                                                                                src=./img/grt.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/the-graph/">The
+                                                                                        Graph</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/the-graph/">GRT</a>
+                                                                        </td>
+                                                                        <td> <span id="grtCota"></span></td>
+                                                                        <td> <span id="grtPrice"></span></td>
+                                                                        <td><span id="grtVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="grtGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/maker/"><img
+                                                                                                src=./img/mkr.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/maker/">Maker</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/maker/">MKR</a>
+                                                                        </td>
+                                                                        <td> <span id="mkrCota"></span></td>
+                                                                        <td> <span id="mkrPrice"></span></td>
+                                                                        <td><span id="mkrVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="mkrGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stacks/"><img
+                                                                                                src=./img/stx.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stacks/">Stacks</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/stacks/">STX</a>
+                                                                        </td>
+                                                                        <td> <span id="stxCota"></span></td>
+                                                                        <td> <span id="stxPrice"></span></td>
+                                                                        <td><span id="stxVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="stxGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pancakeswap/"><img
+                                                                                                src=./img/cake.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pancakeswap/">PancakeSwap</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pancakeswap/">CAKE</a>
+                                                                        </td>
+                                                                        <td> <span id="cakeCota"></span></td>
+                                                                        <td> <span id="cakePrice"></span></td>
+                                                                        <td><span id="cakeVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="cakeGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/enjin-coin/"><img
+                                                                                                src=./img/enj.png></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/enjin-coin/">Enjin
+                                                                                        Coin</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/enjin-coin/">ENJ</a>
+                                                                        </td>
+                                                                        <td> <span id="enjCota"></span></td>
+                                                                        <td> <span id="enjPrice"></span></td>
+                                                                        <td><span id="enjVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="enjGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ecash/"><img
+                                                                                                src=./img/XEC.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ecash/">eCash</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ecash/">XEC</a>
+                                                                        </td>
+                                                                        <td> <span id="xecCota"></span></td>
+                                                                        <td> <span id="xecPrice"></span></td>
+                                                                        <td><span id="xecVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="xecGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/quant/"><img
+                                                                                                src=./img/qnt.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/quant/">Quant</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/quant/">QNT</a>
+                                                                        </td>
+                                                                        <td> <span id="qntCota"></span></td>
+                                                                        <td> <span id="qntPrice"></span></td>
+                                                                        <td><span id="qntVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="qntGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/zcash/"><img
+                                                                                                src=./img/ZEC.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/zcash/">Zcash</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/zcash/">ZEC</a>
+                                                                        </td>
+                                                                        <td> <span id="zecCota"></span></td>
+                                                                        <td> <span id="zecPrice"></span></td>
+                                                                        <td><span id="zecVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="zecGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/"><img
+                                                                                                src=./img/NEO.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/">NEO</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/">NEO</a>
+                                                                        </td>
+                                                                        <td> <span id="neoCota"></span></td>
+                                                                        <td> <span id="neoPrice"></span></td>
+                                                                        <td><span id="neoVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="neoGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/"><img
+                                                                                                src=./img/ksm.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/">Kusama</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/neo/">KSM</a>
+                                                                        </td>
+                                                                        <td> <span id="ksmCota"></span></td>
+                                                                        <td> <span id="ksmPrice"></span></td>
+                                                                        <td><span id="ksmVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="ksmGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/thorchain/"><img
+                                                                                                src=./img/rune.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/thorchain/">THORChain</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/thorchain/">RUNE</a>
+                                                                        </td>
+                                                                        <td> <span id="runeCota"></span></td>
+                                                                        <td> <span id="runePrice"></span></td>
+                                                                        <td><span id="runeVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="runeGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/curve-dao-token/"><img
+                                                                                                src=./img/crv.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/curve-dao-token/">Curve</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/curve-dao-token/">CRV</a>
+                                                                        </td>
+                                                                        <td> <span id="crvCota"></span></td>
+                                                                        <td> <span id="crvPrice"></span></td>
+                                                                        <td><span id="crvVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="crvGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chiliz/"><img
+                                                                                                src=./img/chz.svg></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chiliz/">Chiliz</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/chiliz/">CHZ</a>
+                                                                        </td>
+                                                                        <td> <span id="chzCota"></span></td>
+                                                                        <td> <span id="chzPrice"></span></td>
+                                                                        <td><span id="chzVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="chzGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/celo/"><img
+                                                                                                src=./img/celo.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/celo/">Celo</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/celo/">CELO</a>
+                                                                        </td>
+                                                                        <td> <span id="celoCota"></span></td>
+                                                                        <td> <span id="celoPrice"></span></td>
+                                                                        <td><span id="celoVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="celoGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pundi-x/"><img
+                                                                                                src=./img/pundix.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pundi-x/">Pundi
+                                                                                        X</a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/pundi-x/">PUNDIX</a>
+                                                                        </td>
+                                                                        <td> <span id="pundixCota"></span></td>
+                                                                        <td> <span id="pundixPrice"></span></td>
+                                                                        <td><span id="pundixVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="pundixGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/paris-saint-germain-fan-token/"><img
+                                                                                                src=./img/psg.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/paris-saint-germain-fan-token/">Paris
+                                                                                        Saint-Germain Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/paris-saint-germain-fan-token/">PSG</a>
+                                                                        </td>
+                                                                        <td> <span id="psgCota"></span></td>
+                                                                        <td> <span id="psgPrice"></span></td>
+                                                                        <td><span id="psgVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="psgGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/manchester-city-fan-token/"><img
+                                                                                                src=./img/city.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/manchester-city-fan-token/">Manchester
+                                                                                        City Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/manchester-city-fan-token/">CITY</a>
+                                                                        </td>
+                                                                        <td> <span id="cityCota"></span></td>
+                                                                        <td> <span id="cityPrice"></span></td>
+                                                                        <td><span id="cityVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="cityGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/lazio-fan-token/"><img
+                                                                                                src=./img/lazio.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/lazio-fan-token/">Lazio
+                                                                                        Fan
+                                                                                        Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/lazio-fan-token/">LAZIO</a>
+                                                                        </td>
+                                                                        <td> <span id="lazioCota"></span></td>
+                                                                        <td> <span id="lazioPrice"></span></td>
+                                                                        <td><span id="lazioVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="lazioGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-porto/"><img
+                                                                                                src=./img/porto.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-porto/">FC
+                                                                                        Porto Fan
+                                                                                        Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-porto/">PORTO</a>
+                                                                        </td>
+                                                                        <td> <span id="portoCota"></span></td>
+                                                                        <td> <span id="portoPrice"></span></td>
+                                                                        <td><span id="portoVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="portoGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ac-milan-fan-token/"><img
+                                                                                                src=./img/ACM.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ac-milan-fan-token/">AC
+                                                                                        Milan
+                                                                                        Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/ac-milan-fan-token/">ACM</a>
+                                                                        </td>
+                                                                        <td> <span id="acmCota"></span></td>
+                                                                        <td> <span id="acmPrice"></span></td>
+                                                                        <td><span id="acmVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="acmGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/santos-fc-fan-token/"><img
+                                                                                                src=./img/santos.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/santos-fc-fan-token/">Santos
+                                                                                        FC Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/santos-fc-fan-token/">SANTOS</a>
+                                                                        </td>
+                                                                        <td> <span id="santosCota"></span></td>
+                                                                        <td> <span id="santosPrice"></span></td>
+                                                                        <td><span id="santosVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="santosGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/atletico-de-madrid-fan-token/"><img
+                                                                                                src=./img/ATM.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/atletico-de-madrid-fan-token/">Atlético
+                                                                                        de Madrid Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/atletico-de-madrid-fan-token/">ATM</a>
+                                                                        </td>
+                                                                        <td> <span id="atmCota"></span></td>
+                                                                        <td> <span id="atmPrice"></span></td>
+                                                                        <td><span id="atmVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="atmGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/juventus-fan-token/"><img
+                                                                                                src=./img/juv.svg></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/juventus-fan-token/">Juventus
+                                                                                        Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/juventus-fan-token/">JUV</a>
+                                                                        </td>
+                                                                        <td> <span id="juvCota"></span></td>
+                                                                        <td> <span id="juvPrice"></span></td>
+                                                                        <td><span id="juvVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="juvGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/og-fan-token/"><img
+                                                                                                src=./img/og.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/og-fan-token/">OG
+                                                                                        Fan
+                                                                                        Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/og-fan-token/">OG</a>
+                                                                        </td>
+                                                                        <td> <span id="ogCota"></span></td>
+                                                                        <td> <span id="ogPrice"></span></td>
+                                                                        <td><span id="ogVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="ogGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/as-roma-fan-token/"><img
+                                                                                                src=./img/asr.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/as-roma-fan-token/">AS
+                                                                                        Roma
+                                                                                        Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/as-roma-fan-token/">ASR</a>
+                                                                        </td>
+                                                                        <td> <span id="asrCota"></span></td>
+                                                                        <td> <span id="asrPrice"></span></td>
+                                                                        <td><span id="asrVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="asrGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-barcelona-fan-token/"><img
+                                                                                                src=./img/bar.png></a>
+                                                                        </td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-barcelona-fan-token/">FC
+                                                                                        Barcelona Fan Token</a></td>
+                                                                        <td><a target="_blank"
+                                                                                        href="https://coinmarketcap.com/currencies/fc-barcelona-fan-token/">BAR</a>
+                                                                        </td>
+                                                                        <td> <span id="barCota"></span></td>
+                                                                        <td> <span id="barPrice"></span></td>
+                                                                        <td><span id="barVar"></span> %</td>
+                                                                        <td name="" style="width: 300px; height:90px">
+                                                                                <canvas id="barGraph"
+                                                                                        style="width:100%; height:100%"></canvas>
+                                                                        </td>
+                                                                        <td><a target="_blank" class="btn btn-primary"
+                                                                                        href="https://app.fourceex.io/"
+                                                                                        role="button">Compra/Venda</a>
+                                                                        </td>
+                                                                        </tr>
+
+                                                                        <!-- caso precisar adicionar uma linha nova de moeda
+              comece aqui -->
+                                                                </tbody>
+                                                        </table>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </section>
+
+</body>
+
+<script src="./js/cota.js"></script>
+<script src="./js/graph.js"></script>
+<script src="./js/searchbar.js"></script>
+
+</html>
